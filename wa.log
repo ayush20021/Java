@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 169, in _new_conn
+    conn = connection.create_connection(
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 73, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+  File "/usr/lib/python3.9/socket.py", line 953, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 699, in urlopen
+    httplib_response = self._make_request(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 382, in _make_request
+    self._validate_conn(conn)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 1012, in _validate_conn
+    conn.connect()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 353, in connect
+    conn = self._new_conn()
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 181, in _new_conn
+    raise NewConnectionError(
+urllib3.exceptions.NewConnectionError: <urllib3.connection.HTTPSConnection object at 0x7607aa90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/pi/w.py", line 100, in <module>
+    print(telegram_bot.getMe())
+  File "/usr/local/lib/python3.9/dist-packages/telepot/__init__.py", line 503, in getMe
+    return self._api_request('getMe')
+  File "/usr/local/lib/python3.9/dist-packages/telepot/__init__.py", line 491, in _api_request
+    return api.request((self._token, method, params, files), **kwargs)
+  File "/usr/local/lib/python3.9/dist-packages/telepot/api.py", line 154, in request
+    r = fn(*args, **kwargs)  # `fn` must be thread-safe
+  File "/usr/lib/python3/dist-packages/urllib3/request.py", line 170, in request_encode_body
+    return self.urlopen(method, url, **extra_kw)
+  File "/usr/lib/python3/dist-packages/urllib3/poolmanager.py", line 375, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 783, in urlopen
+    return self.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 783, in urlopen
+    return self.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 783, in urlopen
+    return self.urlopen(
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 755, in urlopen
+    retries = retries.increment(
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 574, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.telegram.org', port=443): Max retries exceeded with url: /bot5599253589:AAFiR3j5x44FZAnHjxOXfu0AlfY0zp6TN9U/getMe (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7607aa90>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution'))
